@@ -54,7 +54,6 @@ class Cube:
             for i, m in enumerate(new_moves):
                 new_moves[i].reverse()
             self.state = raw_move(self.state, move[:-1], new_moves)
-        print(self.state)
         return self.state
 
     def get_face_case(self, face, face_only=False):
