@@ -47,16 +47,10 @@ def pll_case(moves):
 def oll_case(moves):
     cube = Cube()
 
-    moves_list = moves.split(" ")
-
-    for i, m in enumerate(moves_list):
-        if "U" in m: 
-            moves_list[i] = m.replace("U", "D")
-        if "D" in m: 
-            moves_list[i] = m.replace("D", "U")
+    moves_list = parse_moves(moves.split(" "))
 
     cube.algorithm(moves_list)
     
     draw_case(cube.get_face_case("y", face_only=True))
 
-pll_case("Lp U Lp Up Lp Up Lp U L U L2")
+oll_case("R U Rp Up Rp F R Fp")
