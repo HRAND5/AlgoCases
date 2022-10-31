@@ -1,23 +1,42 @@
-"""
-Hver opmærksom på at de moves der laves er i forhold til orientationen. Derfor skal de enten konverteres til at være når gul er opad, eller de bare laves med hvid opad og farveren konverteres derefter. Det er nok nemmest at konverterer moves først, men idfk. 
-
-"""
-
-
-
-
 from generate_case import *
 from simulate_cube import *
+
+def rotate_moves(moves_list):
+    for i, m in enumerate(moves_list):
+        if "U" in m: 
+            moves_list[i] = m.replace("U", "D")
+        if "D" in m: 
+            moves_list[i] = m.replace("D", "U")
+        if "F" in m: 
+            moves_list[i] = m.replace("F", "B")
+        if "B" in m: 
+            moves_list[i] = m.replace("B", "F")
+
+    return moves_list
+
+def pll_case(moves):
+    cube = Cube()
+
+    moves_list = rotate_moves(moves.split(" "))
+    
+
+    cube.algorithm(moves_list)
+
+    draw_case(cube.get_face_case("y"))
 
 def oll_case(moves):
     cube = Cube()
 
     moves_list = moves.split(" ")
 
-    for m in moves_list:
-        cube.move(move)
+    for i, m in enumerate(moves_list):
+        if "U" in m: 
+            moves_list[i] = m.replace("U", "D")
+        if "D" in m: 
+            moves_list[i] = m.replace("D", "U")
 
+    cube.algorithm(moves_list)
+    
+    draw_case(cube.get_face_case("y", face_only=True))
 
-cube = Cube()
-
-cube.move("R")
+pll_case("R U Rp Up Rp F R2 Up Rp Up R U Rp Fp")

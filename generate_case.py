@@ -7,7 +7,12 @@ w, h = 1000, 1000
 
 CELL_TO_COLOR = {
     "0": "#cccccc",
-    "y": "#FFFF00"
+    "w": "#ffffff",
+    "o": "#ffa500",
+    "g": "#00ff00",
+    "r": "#ff0000",
+    "b": "#0000ff",
+    "y": "#ffff00"
 }
 
 
