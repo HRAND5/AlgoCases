@@ -8,3 +8,4 @@
 - Add CLI 
 - Read multiple algos from file
 - Arrows for PLL 
+- Web frontend
