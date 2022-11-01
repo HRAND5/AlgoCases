@@ -41,7 +41,7 @@ def pll_case(moves):
 
     cube.algorithm(moves_list)
 
-    draw_case(cube.get_face_case("y"))
+    draw_case(cube.get_face_case("w"))
 
 
 def oll_case(moves):
@@ -53,4 +53,4 @@ def oll_case(moves):
     
     draw_case(cube.get_face_case("y", face_only=True))
 
-oll_case("R U Rp Up Rp F R Fp")
+pll_case("R U R")

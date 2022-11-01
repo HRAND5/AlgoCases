@@ -13,14 +13,19 @@ FACES = {
 }
 
 
-with open("./moves.json") as f:
+with open("./moves/center_moves.json") as f:
+    CENTER_MOVES_DICT = ujson.load(f)
+
+
+with open("./moves/moves.json") as f:
     MOVES_DICT = ujson.load(f)
 
-VALID_MOVES = list(MOVES_DICT.keys())
+VALID_MOVES = list(MOVES_DICT.keys()) + list(CENTER_MOVES_DICT.keys())
 
 for m in VALID_MOVES.copy():
     VALID_MOVES.append(f"{m}p")
     VALID_MOVES.append(f"{m}2")
+
 
 def raw_move(cubestate, move, raw_moves): 
     if len(cubestate) != 48:
@@ -40,16 +45,18 @@ class Cube:
         for c in COLORS:
             for i in range(8):
                 self.state.append(c)
+        self.orientation = COLORS
 
     def move(self, move):
         if move not in VALID_MOVES:
             raise Exception("Unvalid move, please check you are passing the correct move.")
         if len(move) == 1:
+            print("c")
             self.state = raw_move(self.state, move, MOVES_DICT.get(move, []))
         elif move.endswith("2"):
             self.state = raw_move(raw_move(self.state, move, MOVES_DICT.get(move[:-1], [])), move, MOVES_DICT.get(move[:-1], []))
         elif move.endswith("p"):
-            
+            print("ac")
             new_moves = [mv[:] for mv in MOVES_DICT.get(move[:-1], [])]
             for i, m in enumerate(new_moves):
                 new_moves[i].reverse()
